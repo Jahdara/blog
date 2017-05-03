@@ -60,7 +60,7 @@
 				<h3>Content:</h3>
 				<textarea name="cont" placeholder="Enter Content"></textarea>
 
-				<input type="submit" name="add" value="Add">
+				<input type="submit" name="add" cols="50" rows="10" value="Add">
 				</form>
 				
 				</div>
