@@ -2,7 +2,7 @@
 
 	session_start();
 
-	$title = "Blog:Register";
+	$title = "Blog:View Post";
 
 	include 'includes/functions.php';
 
@@ -19,18 +19,22 @@
 			<table id="tab">
 				<thead>
 					<tr>
-						<th>Post Id</th>
+						
 						<th>Date</th>
-						<th>Post Title</th>
-						<th>content</th>
 						<th>firstname</th>
+						<th>content</th>
+						<th>Post Title</th>
+						<th>edit</th>
+						<th>delete</th>
+						
+						
 					</tr>
 				</thead>
 				<tbody>
 				
 						<?php
 
-							$view =viewPost($con); echo $view; 
+						$view = Utils::viewPost($con); echo $view; 
 
 						?>			
 
