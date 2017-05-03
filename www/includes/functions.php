@@ -46,12 +46,12 @@
 
 			return $result;
 		}
-	}
 
-	public static function doLogin($dbcon, $input) {
+
+	public static function doAdminLogin($dbcon, $input) {
 			$result = [];
 
-			$stmt = $dbcon->prepare("SELECT admin_id, hash FROM admin WHERE email=:e");
+			$stmt = $dbcon->prepare("SELECT *FROM admin WHERE email=:e");
 			$stmt->bindParam(":e", $input['email']);
 
 			$stmt->execute();
@@ -76,3 +76,4 @@
 		public static function redirect($loc, $msg) {
 			header("Location: ".$loc.$msg);
 		}
+	}
