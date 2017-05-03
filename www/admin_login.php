@@ -8,6 +8,33 @@
 
 	include 'includes/functions.php';
 
+	$errors[];
+
+	if(array_key_exists('login', $_POST)) {
+
+		if(empty($_POST['email'])) {
+			$errors['email'] = "please enter an email address";
+		}
+
+		if(empty($_POST['password'])) {
+			$errors['password'] = "please enter a password";
+		}
+
+		# be sure there are no errors
+		if(empty($errors)) {
+			# attempt to log user in...
+			$clean = array_map('trim', $_POST);
+
+			$check = Utils::doLogin($conn, $clean);
+
+			# set sessions
+			$_SESSION['admin_id'] = $check[1];
+
+			# redirect
+			header("Location: add_category.php"); 
+		}
+	}
+
 ?>
 
 
