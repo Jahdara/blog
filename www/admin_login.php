@@ -25,13 +25,13 @@
 			# attempt to log user in...
 			$clean = array_map('trim', $_POST);
 
-			$check = Utils::doLogin($conn, $clean);
+			$check = Utils::doLogin($con, $clean);
 
 			# set sessions
 			$_SESSION['admin_id'] = $check[1];
 
 			# redirect
-			header("Location: add_category.php"); 
+			header("Location: add_post.php"); 
 		}
 	}
 
