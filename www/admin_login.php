@@ -25,7 +25,7 @@
 			# attempt to log user in...
 			$clean = array_map('trim', $_POST);
 
-			$check = Utils::doLogin($con, $clean);
+			$check = Utils::doAdminLogin($con, $clean);
 
 			# set sessions
 			$_SESSION['admin_id'] = $check[1];
