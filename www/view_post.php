@@ -11,3 +11,12 @@
 	Utils::checkLogin();
 
 ?>
+
+
+
+
+
+<?php
+
+		include 'includes/footer.php';
+?>
