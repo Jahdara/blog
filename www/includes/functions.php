@@ -7,7 +7,7 @@
 			}
 		}
 
-		public static function displayError($key, $arr) {
+		public static function displayErrors($key, $arr) {
 
 			if(isset($arr[$key])) {
 				echo '<span class="err">'.$arr[$key]. '</span>';
@@ -76,4 +76,24 @@
 		public static function redirect($loc, $msg) {
 			header("Location: ".$loc.$msg);
 		}
+
+
+		public static function addPost($dbcon, $input, $admin_id){
+			$stmt=$dbcon->prepare("INSERT INTO post (post_id,date,post_title,content,admin_id) VALUES(NULL,NOW(),:pt,:c,:aid)");
+			$data =[
+
+			":pt"=>$input['postt'],
+			":c"=>$input['cont'],
+			":aid"=>$admin_id
+			];
+			$stmt->execute($data);
+		}
+
+		public static function curNav($page) {
+			$curPage = basename($_SERVER['SCRIPT_FILENAME']);
+			if($curPage == $page) {
+				echo 'class="selected"';
+			}
+		}
+
 	}
