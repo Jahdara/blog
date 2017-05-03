@@ -2,6 +2,8 @@
 
 	session_start();
 
+	$title = "Blog:Add Post";
+
 	$admin_id = $_SESSION['admin_id']; 
 
 	include 'includes/db.php';
