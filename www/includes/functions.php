@@ -103,11 +103,13 @@
 			$stmt->execute();
 			while($row = $stmt->fetch(PDO::FETCH_BOTH)){
 
+				$carl = Utils::GetAdminDetails($dbcon,$row['admin_id']);
+
 				$result .= '<tr>
 							<td>'.$row['date'] .'</td>;
 							<td>'.$row['post_title'].'</td>;
 							<td>'.$row['content'].'</td>;
-							<td>'.$row['admin_id'].'</td>;
+							<td>'.$carl['firstname'].'</td>;
 							<td><a href="edit_post.php?pid='.$row['post_id'].'">edit</a></td>;
 						<td><a href="delete_post.php?pid='.$row['post_id'].'">delete</a></td>;
 						</tr>';
@@ -116,14 +118,14 @@
 			return $result;
 		}
 
-		public static function getPostById($dbcon, $post_id){
-			$result = "";
+		public static function GetAdminDetails($dbcon, $admin_id){
 
-			$stmt = $dbcon->prepare("SELECT *FROM admin WHERE post_id=:p");
-			$stmt->bindParam(":p", $post_id);
-			$stmt->execute();
-			$row = $stmt->fetch(PDo::FETCH_BOTH);
-			return $row;
+			$stmt = $dbcon->prepare("SELECT firstname FROM admin WHERE admin_id=:aid");
+					$stmt->bindParam(":aid", $admin_id);
+					$stmt->execute();
+				$input= $stmt->fetch(PDO::FETCH_BOTH);
+
+				return $input;
 		}
 
 	}
