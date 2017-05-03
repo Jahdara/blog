@@ -1,6 +1,8 @@
 <?php
 
 	session_start();
+	
+	$title = "Blog:Register";
 
 	include 'includes/header.php';
 
