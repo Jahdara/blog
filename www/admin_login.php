@@ -47,12 +47,12 @@
 			if(isset($_GET['msg'])){ echo '<span class="err">'.$_GET['msg'].'</span>'; }
 		?>
 			<div>
-				<?php Utils::displayError("email", $errors); ?>
+				<?php Utils::displayErrors("email", $errors); ?>
 				<label>email:</label>
 				<input type="text" name="email" placeholder="email">
 			</div>
 			<div>
-				<?php Utils::displayError("password", $errors); ?>
+				<?php Utils::displayErrors("password", $errors); ?>
 				<label>password:</label>
 				<input type="password" name="password" placeholder="password">
 			</div>
