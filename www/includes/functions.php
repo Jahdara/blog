@@ -112,6 +112,7 @@
 							<td>'.$carl['firstname'].'</td>;
 							<td><a href="edit_post.php?pid='.$row['post_id'].'">edit</a></td>;
 						<td><a href="delete_post.php?pid='.$row['post_id'].'">delete</a></td>;
+						<td><a href="archive.php?pid='.$row['post_id'].'">archive</a></td>;
 						</tr>';
 			}
 
@@ -126,6 +127,28 @@
 				$input= $stmt->fetch(PDO::FETCH_BOTH);
 
 				return $input;
+		}
+
+		public static function getPostById($dbcon, $post_id){
+			$result ="";
+
+			$stmt = $dbcon->prepare("SELECT *FROM post WHERE post_id=:p");
+			$stmt->(":p",$post_id);
+			$stmt->execute();
+			$row = $stmt-fetch(PDO::FETCH_BOTH);
+			return $row;
+		}
+
+		public static function updatePost($dbcon, $input, $post_id){
+			$result = "";
+
+			$stmt = $dbcon->prepare("UPDATE post SET title=:ti,cont=:c WHERE post_id=:post_id");
+			$data = [
+				":post_id "=> $post_id,
+				":ti" => $input['title'],
+				":c" => $input['cont'],
+			];
+			$stmt->execute($data);
 		}
 
 	}
