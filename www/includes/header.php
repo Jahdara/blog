@@ -7,6 +7,6 @@
 <body>
 	<section>
 		<div class="mast">
-			<h1>T<span>SSB</span></h1>
+			<h1>A<span>PARA BLOG</span></h1>
 		</div>
 	</section>
