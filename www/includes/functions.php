@@ -112,6 +112,8 @@
 						<td><a href="delete_post.php?pid='.$row['post_id'].'">delete</a></td>;
 						</tr>';
 			}
+
+			return $result;
 		}
 
 	}
