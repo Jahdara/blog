@@ -2,15 +2,19 @@
 
 	session_start();
 
-	include 'includes/db.php';
+	$admin_id = $_SESSION['admin_id']; 
 
-	Utils::checkLogin();
+	include 'includes/db.php';
 
 	include 'includes/functions.php';
 
-	include 'include/dashboard_header.php';
+	include 'includes/dashboard_header.php';
 
-	$errors[];
+	Utils::checkLogin();
+
+	
+
+	$errors = [];
 
 	if(array_key_exists('add',$_POST)){
 
@@ -24,7 +28,7 @@
 
 		if(empty($errors)){
 			$clean = array_map('trim', $_POST);
-			Utils::addPost($con, $clean);
+			Utils::addPost($con, $clean, $admin_id);
 		}
 	}
 
