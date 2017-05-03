@@ -8,7 +8,7 @@
 
 	include 'includes/functions.php';
 
-	$errors[];
+	$errors=[];
 
 	if(array_key_exists('login', $_POST)) {
 
