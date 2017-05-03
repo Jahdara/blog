@@ -96,4 +96,22 @@
 			}
 		}
 
+		public static function viewPost($dbcon){
+			$result = "";
+
+			$stmt = $dbcon->prepare("SELECT *FROM post");
+			$stmt->execute();
+			while($row = $stmt->fetch(PDO::FETCH_BOTH)){
+
+				$result .= '<tr>
+							<td>'.$row['date'] .'</td>;
+							<td>'.$row['post_title'].'</td>;
+							<td>'.$row['content'].'</td>;
+							<td>'.$row['admin_id'].'</td>;
+							<td><a href="edit_post.php?pid='.$row['post_id'].'">edit</a></td>;
+						<td><a href="delete_post.php?pid='.$row['post_id'].'">delete</a></td>;
+						</tr>';
+			}
+		}
+
 	}
