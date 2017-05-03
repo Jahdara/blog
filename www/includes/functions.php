@@ -47,3 +47,32 @@
 			return $result;
 		}
 	}
+
+	public static function doLogin($dbcon, $input) {
+			$result = [];
+
+			$stmt = $dbcon->prepare("SELECT admin_id, hash FROM admin WHERE email=:e");
+			$stmt->bindParam(":e", $input['email']);
+
+			$stmt->execute();
+
+			$row = $stmt->fetch(PDO::FETCH_BOTH);
+
+			# if either the email or password is wrong, we return a false array
+			if( ($stmt->rowCount() != 1) || !password_verify($input['password'], $row['hash']) ) {
+
+			Utils::redirect("admin_login.php? +msg=", "either username or password is incorrect");
+				exit();
+			} else {
+				# return true plus extra information...
+				$result[] = true;
+				$result[] = $row['admin_id'];
+			}
+
+			return $result;
+		}
+
+
+		public static function redirect($loc, $msg) {
+			header("Location: ".$loc.$msg);
+		}
