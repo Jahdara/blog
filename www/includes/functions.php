@@ -116,4 +116,14 @@
 			return $result;
 		}
 
+		public static function getPostById($dbcon, $post_id){
+			$result = "";
+
+			$stmt = $dbcon->prepare("SELECT *FROM admin WHERE post_id=:p");
+			$stmt->bindParam(":p", $post_id);
+			$stmt->execute();
+			$row = $stmt->fetch(PDo::FETCH_BOTH);
+			return $row;
+		}
+
 	}
