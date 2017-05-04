@@ -164,19 +164,6 @@
 
 		}
 
-		public static function displayArchive($dbcon)
-		$result = "";
-		
-		$stmt = $dbcon->prepare("SELECT DISTINCT DATE_FORMAT(date,'%M,%Y') AS d,post_id FROM archive");
-
-		$stmt->execute();
-
-		while($row = $stmt->fetch(PDO::FETCH_BOTH)){
-			$post = getPostById($dbcon,$row['post_id']);
-
-			$result .='<li><a href="homepage.php?date='.$post['date'].'">'.$row['d'].'</a></li>';
-
-		}
-		return $result;
+	
 
 }
