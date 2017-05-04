@@ -130,12 +130,12 @@
 		}
 
 		public static function getPostById($dbcon, $post_id){
-			$result ="";
+			//$result ="";
 
 			$stmt = $dbcon->prepare("SELECT *FROM post WHERE post_id=:p");
-			$stmt->(":p",$post_id);
+			$stmt->bindParam(":p",$post_id);
 			$stmt->execute();
-			$row = $stmt-fetch(PDO::FETCH_BOTH);
+			$row = $stmt->fetch(PDO::FETCH_BOTH);
 			return $row;
 		}
 
