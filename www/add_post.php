@@ -30,6 +30,7 @@
 
 		if(empty($errors)){
 			$clean = array_map('trim', $_POST);
+			$clean ['cont'] = htmlspecialchars($clean['cont']);
 			Utils::addPost($con, $clean, $admin_id);
 		}
 	}
