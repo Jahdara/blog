@@ -164,6 +164,42 @@
 
 		}
 
-	
+		public static function displayArchive($dbcon){
+		$result = "";
+		
+		$stmt = $dbcon->prepare("SELECT DISTINCT DATE_FORMAT(date,'%M,%Y') AS d,post_id FROM archive");
+
+		$stmt->execute();
+
+		while($row = $stmt->fetch(PDO::FETCH_BOTH)){
+			$post = Utils::getPostById($dbcon,$row['post_id']);
+
+			$result .='<li><a href="homepage.php?date='.$post['date'].'">'.$row['d'].'</a></li>';
+
+		}
+		return $result;
+
+	}
+		public static function displayPosts($dbcon){
+		$result = "";
+
+		$stmt = $dbcon->prepare("SELECT post_title,admin_id,content,DATE_FORMAT(date,'%M %e, %Y') AS d FROM post");
+		$stmt->execute();
+		while ($row = $stmt->fetch(PDO::FETCH_BOTH)){
+			   $item = Utils::GetAdminDetails($dbcon,$row['admin_id']);
+
+
+			$result .= '<div class="blog-post">
+            			<h2 class="blog-post-title">'.$row['post_title'].'</h2>
+            			<p class="blog-post-meta">'.$row['d'].' by <a href="#">'.$item['firstname'].'</a></p>
+            			<p clas="blog-post">'.$row['content'].'</p>';
+
+			
+		}
+
+		return $result;
+		
+	}
 
 }
+
