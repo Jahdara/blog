@@ -10,6 +10,36 @@
 
 		include 'includes/header.php';
 
+		Utils::checkLogin();
+
+		
+      if(isset($_GET['pid'])){
+			$pid = $_GET['pid'];
+		}
+
+		$view = Utils::getPostById($con, $pid);
+
+		if(array_key_exists('submit', $_POST)){
+
+			if(empty($_POST ['title'])){
+				$errors['title'] = "Enter Post Title";
+
+
+			}
+
+			if(empty($_POST['cont'])){
+				$errors['cont'] = "Enter Content";
+			}
+
+				if(empty($errors)){
+					$clean = array_map('trim',$_POST);
+					$clean['cont'] = htmlspecialchars_decode($clean['cont']);
+
+					Utils::updatePost($con, $clean, $pid);
+					Utils::redirect('view_post.php');
+				}
+		}
+
 
 ?>
 
@@ -18,13 +48,14 @@
 		<hr>
 		<form id="register"  action ="" method ="POST">
 			<div>
-				<label>Title:</label>
-				<input type="text" name="title" placeholder="POST TITLE" value="<?php echo $view['title']; ?>">
+				<label>Post Title:</label>
+				<input type="text" name="title" placeholder="POST TITLE" value="<?php echo $view['post_title']; ?>">
 			</div>
 
 			<div>
-				<label>post:</label>
-				<textarea name="post" placeholder="INPUT POST HERE" cols="50" rows="10" value="<?php echo $view['posts']; ?>">					
+				<label>Content:</label>
+				<textarea name="cont" placeholder="INPUT POST HERE" cols="50" rows="10">
+				<?php echo $view['content']; ?>					
 				</textarea>
 				
 			</div>
