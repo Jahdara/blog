@@ -9,6 +9,13 @@
 
 	Utils::checkLogin();
 
+	if(isset($_GET['pid'])){
+		$pid =$_GET ['pid'];
+	}
+
+	Utils::insertArchive($con, $pid);
+	Utils::redirect('view_post.php');
+
 
 
 ?>
