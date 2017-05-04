@@ -151,4 +151,10 @@
 			$stmt->execute($data);
 		}
 
-	}
+		public static function deletePost($dbcon, $post_id){
+			$stmt = $dbcon->prepare("DELETE FROM post WHERE post_id=:post_id");
+			$stmt->bindParam(":post_id", $post_id);
+			$stmt->execute();
+		}
+
+}
