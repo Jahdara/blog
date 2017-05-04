@@ -1,13 +1,13 @@
 <html>
 <head>
-	<title>TEST</title>
+	<title>APARA BLOG</title>
 	<link rel="stylesheet" type="text/css" href="style/styles.css">
 </head>
 
 <body>
 	<section>
 		<div class="mast">
-			<h1>T<span>SSB</span></h1>
+			<h1>A<span>para</span></h1>
 			<nav>
 				<ul class="clearfix">
 					<li><a href="add_post.php" <?php Utils::curNav("add_post.php"); ?>>add post</a></li>
