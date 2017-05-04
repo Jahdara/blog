@@ -26,6 +26,7 @@
 						<th>Post Title</th>
 						<th>edit</th>
 						<th>delete</th>
+						<th>archive</th>
 						
 						
 					</tr>
